@@ -8,9 +8,9 @@ function Homepage() {
       <Head>
         <title>Prill.io</title>s
       </Head>
-      <Header></Header>
+      <Header />
       <h1 className="text-4xl font-bold underline">Homepage</h1>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }
