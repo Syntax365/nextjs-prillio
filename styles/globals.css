@@ -50,14 +50,15 @@ a {
   border-radius: 50px;
   display: inline-block;
   font-weight: 550;
-}
-
-.button:hover {
-  background-position: left center;
+  background-size: 300% 100%;
   moz-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+}
+
+.button:hover {
+  background-position: 100% 0;
 }
 
 .primary {
@@ -67,14 +68,21 @@ a {
     linear,
     left top,
     right top,
-    from(var(--purple)),
-    to(var(--pink))
+    var(--purple),
+    var(--pink),
+    var(--purple)
   );
-  background-image: linear-gradient(to right, var(--purple), var(--pink));
+  background-image: linear-gradient(
+    to right,
+    var(--purple),
+    var(--pink),
+    var(--purple)
+  );
 }
 
 .secondary {
   border-width: 2px;
   border-color: black;
   color: black;
+  background-image: linear-gradient(to right, white, white, silver);
 }
