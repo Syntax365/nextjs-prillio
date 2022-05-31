@@ -25,13 +25,13 @@ a {
 }
 
 .shadow-bottom {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 3px -1px var(--purple);
 }
 
 .border-bottom {
   border-bottom: 1px;
   border-style: solid;
-  border-color: gray;
+  border-color: var(--pink);
 }
 
 .button {
@@ -84,5 +84,5 @@ a {
   border-width: 2px;
   border-color: black;
   color: black;
-  background-image: linear-gradient(to right, white, white, silver);
+  /* background-image: linear-gradient(to right, white, white, silver); */
 }
