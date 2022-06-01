@@ -86,3 +86,14 @@ a {
   color: black;
   /* background-image: linear-gradient(to right, white, white, silver); */
 }
+
+.border {
+  border-radius: 16px;
+  border-style: solid;
+  border-color: var(--pink);
+  box-shadow: 0 1px 3px -1px var(--purple);
+}
+
+.color-purple {
+  background-color: var(--pink);
+}
