@@ -33,7 +33,7 @@ function Homepage() {
       </Head>
       <Header />
       <Body className={"justify-between items-center"}>
-        <Toolbar className={"mt-2 mb-1 h-[60px] flex justify-center"}>
+        <Toolbar className={"mt-1 mb-1 h-[60px] flex justify-center"}>
           <Button onClick={startPointClick} className={"secondary mx-2"}>
             Pick Start Point
           </Button>
@@ -41,7 +41,7 @@ function Homepage() {
             Clear Graph
           </Button>
         </Toolbar>
-        <Matrix className={"w-full h-[80vh]"} />
+        <Matrix className={"w-full h-[65vh]"} />
         {/* <Toolbar className={"border h-[1px] my-4 flex justify-center"}>
           <Button onClick={startMatrix} className={"secondary mx-2"}>
             Matrix Spiral
