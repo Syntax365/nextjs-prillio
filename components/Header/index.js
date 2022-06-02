@@ -1,6 +1,11 @@
 import Button from "../Button";
 
 function Header() {
+  const runFunction = () => {
+    if (typeof window != undefined) {
+      window.runSpiralMatrix();
+    }
+  };
   return (
     <div className={"h-[60px] border-bottom shadow-bottom w-full sticky px-4"}>
       <div className={"flex flex-row items-center h-full"}>
@@ -12,7 +17,9 @@ function Header() {
             <h2 className={"text-3xl"}>Prill.io</h2>
           </div>
         </div>
-        <Button className={"primary"}>Run Code</Button>
+        <Button onClick={runFunction} className={"primary"}>
+          Run Code
+        </Button>
       </div>
     </div>
   );

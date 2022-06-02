@@ -11,5 +11,4 @@ export function startPointPicker(target) {
 
   target.setAttribute("start", true);
   target.classList.add("start-point");
-  console.log(target.classList);
 }

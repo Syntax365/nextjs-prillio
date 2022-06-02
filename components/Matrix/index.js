@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Grid from "./Grid";
+//////////////
 
+//////////////
 function debounce(func, wait, immediate) {
   let timeout;
   return function () {
@@ -19,6 +21,8 @@ function debounce(func, wait, immediate) {
 
 function Matrix(props) {
   const className = props?.className || "";
+  let totalRows;
+  let totalCols;
 
   const [demensions, setDemensions] = useState({ rows: 0, columns: 0 });
 
@@ -31,8 +35,8 @@ function Matrix(props) {
       .getElementById("array-matrix")
       .getBoundingClientRect().height;
 
-    const totalCols = Math.floor(gridWidth / 20);
-    const totalRows = Math.floor(gridHeight / 20);
+    totalCols = Math.floor(gridWidth / 20);
+    totalRows = Math.floor(gridHeight / 20);
 
     setDemensions({ rows: totalRows, columns: totalCols });
   };
@@ -44,8 +48,103 @@ function Matrix(props) {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     handleVariables();
-  }, []);
 
+    window.runSpiralMatrix = runSpiralMatrix;
+
+    window.graph = (path) => {
+      let executionPath = path;
+      let delay = 25;
+      executionPath.forEach((coord) => {
+        document
+          .querySelectorAll(`[coordinates="${coord[0]},${coord[1]}"]`)
+          .forEach((element) => {
+            setTimeout(() => {
+              element.classList.add("color-purple");
+            }, delay);
+            delay += 25;
+          });
+      });
+    };
+  }, []);
+  ///////////////
+  //TODELETE:
+
+  function runSpiralMatrix() {
+    const initializeVirtualArray = (n, m) => {
+      let d = [];
+      for (let i = 0; i < n; i++) {
+        let t = Array(m).fill(0);
+        d.push(t);
+      }
+      return d;
+    };
+
+    let n, m, x, y;
+    let startPoint = [0, 0];
+    let startElement = document.querySelectorAll(`[start]`)[0];
+    if (startElement) {
+      startPoint = startElement.getAttribute("coordinates").split(",");
+    }
+
+    const spiralMatrixIII = (
+      rows = totalRows,
+      cols = totalCols,
+      rStart = startPoint[0],
+      cStart = startPoint[1],
+    ) => {
+      (n = rows), (m = cols), (x = rStart), (y = cStart);
+      let tot = n * m,
+        d = "R",
+        res = [],
+        visit = initializeVirtualArray(n, m);
+      while (res.length < tot) {
+        if (ok(x, y)) {
+          res.push([x, y]);
+          visit[x][y] = 1;
+        }
+        if (d == "R") {
+          y++;
+          if (ok(x + 1, y)) {
+            if (!visit[x + 1][y]) d = "D"; // go right, down neighbour not visited, turn
+          } else {
+            d = "D"; // out of border turn
+          }
+        } else if (d == "D") {
+          x++;
+          if (ok(x, y - 1)) {
+            if (!visit[x][y - 1]) d = "L"; // go down, left neighbour not visited, turn
+          } else {
+            d = "L";
+          }
+        } else if (d == "L") {
+          y--;
+          if (ok(x - 1, y)) {
+            if (!visit[x - 1][y]) d = "U"; // go left, up neighbour not visited, turn
+          } else {
+            d = "U";
+          }
+        } else if (d == "U") {
+          x--;
+          if (ok(x, y + 1)) {
+            if (!visit[x][y + 1]) d = "R"; // go up, right neighbour not visited, turn
+          } else {
+            d = "R";
+          }
+        }
+      }
+      return res;
+    };
+
+    //Validate coord
+    const ok = (x, y) => x >= 0 && x < n && y >= 0 && y < m;
+
+    //Print to Graph
+
+    if (typeof window != undefined) {
+      window.graph(spiralMatrixIII());
+    }
+  }
+  ///////////////
   return (
     <div
       id={"array-matrix"}

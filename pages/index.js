@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import Head from "../components/Head";
 import Body from "../components/Body";
 import Matrix from "../components/Matrix";
@@ -33,7 +33,7 @@ function Homepage() {
       </Head>
       <Header />
       <Body className={"justify-between items-center"}>
-        <Toolbar className={"border h-[60px] my-4 flex justify-center"}>
+        <Toolbar className={"mt-2 mb-1 h-[60px] flex justify-center"}>
           <Button onClick={startPointClick} className={"secondary mx-2"}>
             Pick Start Point
           </Button>
@@ -41,14 +41,14 @@ function Homepage() {
             Clear Graph
           </Button>
         </Toolbar>
-        <Matrix className={"w-full h-[50vh]"} />
-        <Toolbar className={"border h-[60px] my-4 flex justify-center"}>
+        <Matrix className={"w-full h-[80vh]"} />
+        {/* <Toolbar className={"border h-[1px] my-4 flex justify-center"}>
           <Button onClick={startMatrix} className={"secondary mx-2"}>
             Matrix Spiral
           </Button>
-        </Toolbar>
+        </Toolbar> */}
       </Body>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
