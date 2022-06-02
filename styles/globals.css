@@ -55,6 +55,7 @@ a {
   -o-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  height: 48px;
 }
 
 .button:hover {
@@ -96,4 +97,24 @@ a {
 
 .color-purple {
   background-color: var(--pink);
+}
+
+.square {
+  transition: all 0.3s ease-in-out;
+  /* /background-color: var(--pink); */
+}
+
+.shift {
+  transform: scale(1.22);
+}
+
+.active-button {
+  background-color: lightgreen;
+}
+
+.start-point {
+  background-color: var(--purple);
+}
+th[start] {
+  background-color: var(--purple);
 }

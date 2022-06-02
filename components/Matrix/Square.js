@@ -1,17 +1,26 @@
-import React from "react";
 import { useState } from "react";
+
+import { startPointPicker } from "../../helpers/squareHelper";
 
 function Square(props) {
   const [isActive, setIsActive] = useState(false);
+  const [isMouseover, setIsMouseover] = useState(false);
 
   function onMouseEnter() {
-    setIsActive(true);
+    setIsMouseover(true);
   }
 
   function onMouseLeave() {
     setTimeout(() => {
-      setIsActive(false);
+      setIsMouseover(false);
     }, 250);
+  }
+
+  function onMouseClick(event) {
+    let target = event.target;
+    if (document.getElementsByClassName("active-button").length > 0) {
+      startPointPicker(target);
+    }
   }
 
   return (
@@ -19,7 +28,8 @@ function Square(props) {
       coordinates={[props.row, props.col]}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={isActive ? "color-purple" : ""}
+      onClick={onMouseClick}
+      className={`${isMouseover ? "shift" : ""} square  `}
       key={`${props.row}, ${props.col}`}
       style={{
         borderWidth: "1px",

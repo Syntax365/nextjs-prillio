@@ -1,9 +1,7 @@
-function Button(props) {
-  const className = props?.className ? props.className : "";
-
+function Button({ className = "", onClick, children }) {
   return (
-    <button onClick={props?.onClick} className={`button ${className}`}>
-      {props?.children}
+    <button onClick={onClick} className={`button ${className}`}>
+      {children}
     </button>
   );
 }
