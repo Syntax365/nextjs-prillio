@@ -7,7 +7,11 @@ function Header() {
     }
   };
   return (
-    <div className={"h-[60px] border-bottom shadow-bottom w-full sticky px-4"}>
+    <div
+      className={
+        "header h-[60px] border-bottom shadow-bottom w-full sticky px-4"
+      }
+    >
       <div className={"flex flex-row items-center h-full"}>
         <div className={"flex flex-grow"}>
           <div className={"flex items-center h-14"}>

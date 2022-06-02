@@ -9,10 +9,15 @@
 
 html,
 body {
+  background-color: white;
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue;
+}
+
+.header {
+  background-color: white;
 }
 
 a {
@@ -96,7 +101,7 @@ a {
 }
 
 .color-purple {
-  background-color: var(--pink);
+  background-color: var(--purple);
 }
 
 .square {
@@ -104,17 +109,14 @@ a {
   /* /background-color: var(--pink); */
 }
 
-.shift {
-  transform: scale(1.22);
-}
-
 .active-button {
   background-color: lightgreen;
 }
 
 .start-point {
-  background-color: var(--purple);
+  background-color: var(--pink);
 }
+
 th[start] {
-  background-color: var(--purple);
+  background-color: var(--pink);
 }

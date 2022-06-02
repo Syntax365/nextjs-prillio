@@ -29,7 +29,7 @@ function Square(props) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onMouseClick}
-      className={`${isMouseover ? "shift" : ""} square  `}
+      className={"square"}
       key={`${props.row}, ${props.col}`}
       style={{
         borderWidth: "1px",
@@ -37,6 +37,7 @@ function Square(props) {
         width: "20px",
         height: "20px",
         borderStyle: "solid",
+        transform: isMouseover ? "scale(1.22)" : "scale(1)",
       }}
     />
   );
