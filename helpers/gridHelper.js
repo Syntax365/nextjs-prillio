@@ -15,3 +15,11 @@ export function startPointClick(event) {
 
   return;
 }
+
+export function clearGraph() {
+  let clearArr = document.getElementsByClassName("color-purple");
+  for (let i = 0; i < clearArr.length; i++) {
+    clearArr[i].classList.remove("color-purple");
+    i--;
+  }
+}

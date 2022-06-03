@@ -6,24 +6,7 @@ import Matrix from "../components/Matrix";
 import Toolbar from "../components/Toolbar";
 import Button from "../components/Button";
 
-import { startPointClick } from "../helpers/gridHelper";
-
-function startMatrix() {
-  const coord = [0, 0];
-  document
-    .querySelectorAll(`[coordinates="${coord[0]},${coord[1]}"]`)
-    .forEach((element) => {
-      element.classList.add("color-purple");
-    });
-}
-
-function clearGraph() {
-  let clearArr = document.getElementsByClassName("color-purple");
-  for (let i = 0; i < clearArr.length; i++) {
-    clearArr[i].classList.remove("color-purple");
-    i--;
-  }
-}
+import { startPointClick, clearGraph } from "../helpers/gridHelper";
 
 function Homepage() {
   return (
@@ -34,19 +17,25 @@ function Homepage() {
       <Header />
       <Body className={"justify-between items-center"}>
         <Toolbar className={"mt-1 mb-1 h-[60px] flex justify-center"}>
-          <Button onClick={startPointClick} className={"secondary mx-2"}>
+          <Button
+            id="start-point-cta"
+            onClick={startPointClick}
+            className={"secondary mx-2"}
+          >
             Pick Start Point
           </Button>
           <Button onClick={clearGraph} className={"secondary mx-2"}>
             Clear Graph
           </Button>
+          {/* <Button
+            id="end-point-cta"
+            onClick={endPointClick}
+            className={"secondary mx-2"}
+          >
+            Pick End Point
+          </Button> */}
         </Toolbar>
         <Matrix className={"w-full h-[65vh]"} />
-        {/* <Toolbar className={"border h-[1px] my-4 flex justify-center"}>
-          <Button onClick={startMatrix} className={"secondary mx-2"}>
-            Matrix Spiral
-          </Button>
-        </Toolbar> */}
       </Body>
       {/* <Footer /> */}
     </>
