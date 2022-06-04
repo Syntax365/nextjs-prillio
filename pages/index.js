@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import { clearGraph } from "../helpers/gridHelper";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleStartPointCTA, toggleEndPointCTA } from "../slices/toolbarSlice";
+import { useEffect } from "react";
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -34,17 +35,20 @@ function Homepage() {
     }
   };
 
+  useEffect(() => {
+    document
+      .getElementById("body")
+      .style.setProperty("height", `${window.innerHeight - 120}px`);
+  }, []);
+
   return (
     <>
       <Head>
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body
-        className={"justify-between items-center"}
-        style={{ height: "calc(100vh - 60px)" }}
-      >
-        <Matrix className={"w-full"} style={{ height: "calc(100% - 60px)" }} />
+      <Body id="body" className={"justify-between items-center"}>
+        <Matrix className={"w-full h-full"} />
         <Toolbar
           id="toolbar"
           className={"mt-1 mb-1 h-[60px] flex justify-center"}
