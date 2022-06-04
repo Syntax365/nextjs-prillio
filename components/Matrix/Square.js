@@ -1,9 +1,15 @@
 import { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { toggleStartPointCTA } from "../../slices/toolbarSlice";
 import { startPointPicker } from "../../helpers/squareHelper";
 
 function Square(props) {
-  const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch();
+
+  const isStartPointActive = useSelector(
+    (state) => state.toolbar.isStartPointActive,
+  );
+
   const [isMouseover, setIsMouseover] = useState(false);
 
   function onMouseEnter() {
@@ -18,8 +24,11 @@ function Square(props) {
 
   function onMouseClick(event) {
     let target = event.target;
-    if (document.getElementsByClassName("active-button").length > 0) {
-      startPointPicker(target);
+    if (isStartPointActive) {
+      dispatch(toggleStartPointCTA());
+      target.setAttribute("start", true);
+      console.log(target);
+      //TODO: Add Start Point to State; Remove previous start points.
     }
   }
 

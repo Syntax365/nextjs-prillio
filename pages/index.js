@@ -6,9 +6,17 @@ import Matrix from "../components/Matrix";
 import Toolbar from "../components/Toolbar";
 import Button from "../components/Button";
 
-import { startPointClick, clearGraph } from "../helpers/gridHelper";
+import { clearGraph } from "../helpers/gridHelper";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleStartPointCTA } from "../slices/toolbarSlice";
 
 function Homepage() {
+  const dispatch = useDispatch();
+
+  const isStartPointActive = useSelector(
+    (state) => state.toolbar.isStartPointActive,
+  );
+
   return (
     <>
       <Head>
@@ -19,21 +27,16 @@ function Homepage() {
         <Toolbar className={"mt-1 mb-1 h-[60px] flex justify-center"}>
           <Button
             id="start-point-cta"
-            onClick={startPointClick}
-            className={"secondary mx-2"}
+            onClick={() => dispatch(toggleStartPointCTA())}
+            className={`secondary mx-2 ${
+              isStartPointActive ? "active-button" : ""
+            }`}
           >
             Pick Start Point
           </Button>
           <Button onClick={clearGraph} className={"secondary mx-2"}>
             Clear Graph
           </Button>
-          {/* <Button
-            id="end-point-cta"
-            onClick={endPointClick}
-            className={"secondary mx-2"}
-          >
-            Pick End Point
-          </Button> */}
         </Toolbar>
         <Matrix className={"w-full h-[65vh]"} />
       </Body>

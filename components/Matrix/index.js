@@ -85,7 +85,6 @@ function Matrix(props) {
     if (startElement) {
       startPoint = startElement.getAttribute("coordinates").split(",");
     }
-
     const spiralMatrixIII = (
       rows = totalRows,
       cols = totalCols,
