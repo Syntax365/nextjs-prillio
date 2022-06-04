@@ -8,15 +8,17 @@ import Button from "../components/Button";
 
 import { clearGraph } from "../helpers/gridHelper";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleStartPointCTA } from "../slices/toolbarSlice";
+import { toggleStartPointCTA, toggleEndPointCTA } from "../slices/toolbarSlice";
 
 function Homepage() {
   const dispatch = useDispatch();
 
   const isStartPointActive = useSelector(
-    (state) => state.toolbar.isStartPointActive,
+    (state) => state.toolbar.isStartPointActive
   );
-
+  const isEndPointActive = useSelector(
+    (state) => state.toolbar.isEndPointActive
+  );
   return (
     <>
       <Head>
@@ -32,10 +34,19 @@ function Homepage() {
               isStartPointActive ? "active-button" : ""
             }`}
           >
-            Pick Start Point
+            <span className={"hidden sm:inline-block"}>Pick</span> Start
           </Button>
           <Button onClick={clearGraph} className={"secondary mx-2"}>
-            Clear Graph
+            Clear
+          </Button>
+          <Button
+            id="end-point-cta"
+            onClick={() => dispatch(toggleEndPointCTA())}
+            className={`secondary mx-2 ${
+              isEndPointActive ? "active-button" : ""
+            }`}
+          >
+            <span className={"hidden sm:inline-block"}>Pick</span> End
           </Button>
         </Toolbar>
         <Matrix className={"w-full h-[65vh]"} />

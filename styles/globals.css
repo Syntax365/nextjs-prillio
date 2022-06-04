@@ -5,6 +5,7 @@
 :root {
   --purple: #7f00ff;
   --pink: #e100ff;
+  --blue: #1f4277;
 }
 
 html,
@@ -113,8 +114,8 @@ a {
   background-color: lightgreen;
 }
 
-.start-point {
-  background-color: var(--pink);
+th[end] {
+  background-color: var(--blue);
 }
 
 th[start] {

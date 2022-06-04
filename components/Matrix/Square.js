@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleStartPointCTA } from "../../slices/toolbarSlice";
-import { startPointPicker } from "../../helpers/squareHelper";
+import {
+  toggleStartPointCTA,
+  toggleEndPointCTA,
+} from "../../slices/toolbarSlice";
 
 function Square(props) {
   const dispatch = useDispatch();
 
-  const isStartPointActive = useSelector(
-    (state) => state.toolbar.isStartPointActive,
-  );
-
   const [isMouseover, setIsMouseover] = useState(false);
+  const isStartPointActive = useSelector(
+    (state) => state.toolbar.isStartPointActive
+  );
+  const isEndPointActive = useSelector(
+    (state) => state.toolbar.isEndPointActive
+  );
 
   function onMouseEnter() {
     setIsMouseover(true);
@@ -24,11 +28,24 @@ function Square(props) {
 
   function onMouseClick(event) {
     let target = event.target;
+
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
+      let prevStartPoint = document.querySelector("[start]");
+      if (prevStartPoint) {
+        prevStartPoint.removeAttribute("start");
+      }
       target.setAttribute("start", true);
-      console.log(target);
       //TODO: Add Start Point to State; Remove previous start points.
+    }
+
+    if (isEndPointActive) {
+      dispatch(toggleEndPointCTA());
+      let prevEndPoint = document.querySelector("[end]");
+      if (prevEndPoint) {
+        prevEndPoint.removeAttribute("end");
+      }
+      target.setAttribute("end", true);
     }
   }
 

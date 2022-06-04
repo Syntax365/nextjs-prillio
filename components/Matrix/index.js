@@ -54,15 +54,20 @@ function Matrix(props) {
     window.graph = (path) => {
       let executionPath = path;
       let delay = 25;
-      executionPath.forEach((coord) => {
+      executionPath.every((coord) => {
+        let end = true;
         document
           .querySelectorAll(`[coordinates="${coord[0]},${coord[1]}"]`)
           .forEach((element) => {
+            if (element.hasAttribute("end")) {
+              end = false;
+            }
             setTimeout(() => {
               element.classList.add("color-purple");
             }, delay);
             delay += 25;
           });
+        return end;
       });
     };
   }, []);
@@ -89,7 +94,7 @@ function Matrix(props) {
       rows = totalRows,
       cols = totalCols,
       rStart = startPoint[0],
-      cStart = startPoint[1],
+      cStart = startPoint[1]
     ) => {
       (n = rows), (m = cols), (x = rStart), (y = cStart);
       let tot = n * m,
