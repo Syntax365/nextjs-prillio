@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAlgorithm } from "../../slices/toolbarSlice";
 
@@ -16,6 +16,7 @@ function DropDown({ className = "" }) {
 
   const onDropDownClick = () => {
     setIsDropDownActive(!isDropDownActive);
+    window.removeEventListener("click", windowClickCallback, false);
   };
 
   const handleItemSelection = (event) => {
@@ -23,11 +24,40 @@ function DropDown({ className = "" }) {
     dispatch(selectAlgorithm(target.id));
   };
 
+  const windowClickCallback = useCallback((event) => {
+    let shouldClose = true;
+    let shouldSkip = false;
+
+    event.path.forEach((parent) => {
+      if (parent?.id && parent.id.includes("dropdown-container")) {
+        shouldClose = false;
+      }
+
+      if (parent?.id && parent.id.includes("dropdown-cta")) {
+        shouldSkip = true;
+      }
+    });
+
+    if (shouldClose) {
+      if (!shouldSkip) {
+        setIsDropDownActive(false);
+        window.removeEventListener("click", windowClickCallback, false);
+      }
+    }
+  });
+
+  useEffect(() => {
+    if (isDropDownActive) {
+      window.addEventListener("click", windowClickCallback, false);
+    }
+  }, [isDropDownActive]);
+
   return (
     <div className={"mx-2 relative z-10"}>
       <Button
+        id={"dropdown-cta"}
         onClick={onDropDownClick}
-        className={`pointer border-gradiant-square flex flex-col sm:w-[165px] items-center bg-white ${className}`}
+        className={`pointer border-gradiant-square flex flex-col sm:w-[165px] items-center z-10 bg-white ${className}`}
       >
         <div className={"flex flex-row text-center items-center"}>
           <span className="hidden sm:inline-block">Algorithms</span>
