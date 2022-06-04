@@ -47,7 +47,7 @@ function Homepage() {
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body id="body" className={"justify-between items-center"}>
+      <Body id="body" className={"justify-between items-center h-[90vh]"}>
         <Matrix className={"w-full h-full"} />
         <Toolbar
           id="toolbar"
