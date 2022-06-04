@@ -13,10 +13,11 @@ function DropDown({ className = "" }) {
   );
 
   const dropDownItems = ["Linear Search", "BFS (Broken)", "DFS (Broken)"];
+  let windowEventType = "click";
 
   const onDropDownClick = () => {
     setIsDropDownActive(!isDropDownActive);
-    window.removeEventListener("click", windowClickCallback, false);
+    window.removeEventListener(windowEventType, windowClickCallback, false);
   };
 
   const handleItemSelection = (event) => {
@@ -41,14 +42,18 @@ function DropDown({ className = "" }) {
     if (shouldClose) {
       if (!shouldSkip) {
         setIsDropDownActive(false);
-        window.removeEventListener("click", windowClickCallback, false);
+        window.removeEventListener(windowEventType, windowClickCallback, false);
       }
     }
   });
 
   useEffect(() => {
+    windowEventType = window.matchMedia("(pointer: coarse)").matches
+      ? "ontouchstart"
+      : "click";
+
     if (isDropDownActive) {
-      window.addEventListener("click", windowClickCallback, false);
+      window.addEventListener(windowEventType, windowClickCallback, false);
     }
   }, [isDropDownActive]);
 
