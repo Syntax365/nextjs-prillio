@@ -5,6 +5,7 @@
 :root {
   --purple: #7f00ff;
   --pink: #e100ff;
+  --lightpink: #f5dadf;
   --blue: #1f4277;
 }
 
@@ -88,8 +89,6 @@ a {
 }
 
 .secondary {
-  border-width: 2px;
-  border-color: black;
   color: black;
   /* background-image: linear-gradient(to right, white, white, silver); */
 }
@@ -111,7 +110,8 @@ a {
 }
 
 .active-button {
-  background-color: lightgreen;
+  background: linear-gradient(var(--lightpink), var(--lightpink)) padding-box,
+    linear-gradient(to right, darkblue, darkorchid) border-box !important;
 }
 
 th[end] {
@@ -120,4 +120,60 @@ th[end] {
 
 th[start] {
   background-color: var(--pink);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.border-gradiant {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, darkblue, darkorchid) border-box;
+  border-radius: 50em;
+  border: 2px solid transparent;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--btn-font-size, 1em);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.border-gradiant-square {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+}
+
+.dropdown-item:hover {
+  color: var(--pink);
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rotateMenu {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+#dropdown-container {
+  transform-origin: top center;
 }

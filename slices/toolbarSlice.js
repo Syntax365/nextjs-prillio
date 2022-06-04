@@ -5,6 +5,7 @@ const toolbarSlice = createSlice({
   initialState: {
     isStartPointActive: false,
     isEndPointActive: false,
+    selectedAlgorithm: "Linear Search",
   },
   reducers: {
     toggleStartPointCTA: (state) => {
@@ -13,9 +14,13 @@ const toolbarSlice = createSlice({
     toggleEndPointCTA: (state) => {
       state.isEndPointActive = !state.isEndPointActive;
     },
+    selectAlgorithm: (state, action) => {
+      state.selectedAlgorithm = action.payload;
+    },
   },
 });
 
-export const { toggleStartPointCTA, toggleEndPointCTA } = toolbarSlice.actions;
+export const { toggleStartPointCTA, toggleEndPointCTA, selectAlgorithm } =
+  toolbarSlice.actions;
 
 export default toolbarSlice;

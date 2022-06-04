@@ -1,4 +1,5 @@
 import Button from "../Button";
+import DropDown from "../DropDown";
 
 function Header() {
   const runFunction = () => {
@@ -6,10 +7,11 @@ function Header() {
       window.runSpiralMatrix();
     }
   };
+
   return (
     <div
       className={
-        "header h-[60px] border-bottom shadow-bottom w-full sticky px-4"
+        "header h-[60px] border-bottom shadow-bottom w-full sticky px-4 z-10"
       }
     >
       <div className={"flex flex-row items-center h-full"}>
@@ -21,6 +23,7 @@ function Header() {
             <h2 className={"text-3xl"}>Prill.io</h2>
           </div>
         </div>
+        <DropDown />
         <Button onClick={runFunction} className={"primary"}>
           Run Code
         </Button>
