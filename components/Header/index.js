@@ -1,7 +1,7 @@
 import Button from "../Button";
 import DropDown from "../DropDown";
 
-function Header() {
+function Header({ ...moreProps }) {
   const runFunction = () => {
     if (typeof window != undefined) {
       window.runSpiralMatrix();
@@ -10,6 +10,7 @@ function Header() {
 
   return (
     <div
+      {...moreProps}
       className={
         "header h-[60px] border-bottom shadow-bottom w-full sticky px-4 z-10"
       }

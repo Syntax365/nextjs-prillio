@@ -19,8 +19,7 @@ function debounce(func, wait, immediate) {
   };
 }
 
-function Matrix(props) {
-  const className = props?.className || "";
+function Matrix({ className = "", ...moreProps }) {
   let totalRows;
   let totalCols;
 
@@ -94,7 +93,7 @@ function Matrix(props) {
       rows = totalRows,
       cols = totalCols,
       rStart = startPoint[0],
-      cStart = startPoint[1]
+      cStart = startPoint[1],
     ) => {
       (n = rows), (m = cols), (x = rStart), (y = cStart);
       let tot = n * m,
@@ -151,6 +150,7 @@ function Matrix(props) {
   ///////////////
   return (
     <div
+      {...moreProps}
       id={"array-matrix"}
       className={`flex justify-center items-center overflow-hidden ${className}`}
     >

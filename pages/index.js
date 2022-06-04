@@ -39,10 +39,16 @@ function Homepage() {
       <Head>
         <title>Prill.io</title>
       </Head>
-      <Header />
-      <Body className={"justify-between items-center"}>
-        <Matrix className={"w-full h-[65vh]"} />
-        <Toolbar className={"mt-1 mb-1 h-[60px] flex justify-center"}>
+      <Header id="header" />
+      <Body
+        className={"justify-between items-center"}
+        style={{ height: "calc(100vh - 60px)" }}
+      >
+        <Matrix className={"w-full"} style={{ height: "calc(100% - 60px)" }} />
+        <Toolbar
+          id="toolbar"
+          className={"mt-1 mb-1 h-[60px] flex justify-center"}
+        >
           <Button
             id="start-point-cta"
             onClick={onStartClick}
