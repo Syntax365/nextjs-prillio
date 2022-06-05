@@ -59,12 +59,17 @@ function Homepage() {
     <>
       <Head>
         <title>Prill.io</title>
+        <meta name="viewport" content="viewport-fit=cover" />
       </Head>
       <Header id="header" />
       <Body
         id="body"
         className={"w-full jusitfy-center"}
-        style={{ height: "calc(100vh - 120px)", maxHeight: "100%" }}
+        style={{
+          height:
+            "calc(100vh - 120px - env(safe-area-inset-bottom) - env(safe-area-inset-top))",
+          maxHeight: "100%",
+        }}
       >
         <Matrix className={"h-full border"} />
         <Toolbar id="toolbar" className={"h-[60px] flex justify-center"}>
