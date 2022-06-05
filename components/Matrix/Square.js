@@ -16,15 +16,14 @@ function Square(props) {
     (state) => state.toolbar.isEndPointActive,
   );
 
-  const touchsupport =
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0;
+  const isTouchDevice = () => {
+    return window.matchMedia("(pointer: coarse)").matches;
+  };
 
   function onMouseEnter() {
     setIsMouseover(true);
 
-    if (touchsupport) {
+    if (isTouchDevice()) {
       onMouseLeave();
     }
   }
