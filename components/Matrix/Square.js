@@ -31,6 +31,7 @@ function Square(props) {
 
   function onMouseClick(event) {
     let target = event.target;
+    target.blur();
 
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
@@ -57,6 +58,10 @@ function Square(props) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onMouseClick}
+      onTouchStart={onMouseClick}
+      onTouchEnd={(event) => {
+        event.target.blur();
+      }}
       className={`square`}
       key={`${props.row}, ${props.col}`}
       style={{
