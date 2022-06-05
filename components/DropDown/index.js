@@ -53,7 +53,7 @@ function DropDown({ className = "" }) {
   }, [isDropDownActive]);
 
   return (
-    <div className={"mx-2 relative z-10"}>
+    <div className={"mr-2 relative z-10"}>
       <Button
         id={"dropdown-cta"}
         onClick={onDropDownClick}

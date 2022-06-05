@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { debounce } from "../../helpers/gridHelper";
 import { useSelector, useDispatch } from "react-redux";
 import { setGridDemensions } from "../../slices/gridSlice";

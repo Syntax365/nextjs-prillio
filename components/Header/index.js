@@ -18,7 +18,10 @@ function Header({ ...moreProps }) {
       <div className={"flex flex-row items-center h-full"}>
         <div className={"flex flex-grow"}>
           <div className={"flex items-center h-14"}>
-            <img className={"h-full"} src={"./prilltech_logo.svg"} />
+            <img
+              className={"h-full hidden sm:block"}
+              src={"./prilltech_logo.svg"}
+            />
           </div>
           <div className={"flex items-center"}>
             <h2 className={"text-3xl"}>Prill.io</h2>

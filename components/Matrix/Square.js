@@ -10,10 +10,10 @@ function Square(props) {
 
   const [isMouseover, setIsMouseover] = useState(false);
   const isStartPointActive = useSelector(
-    (state) => state.toolbar.isStartPointActive
+    (state) => state.toolbar.isStartPointActive,
   );
   const isEndPointActive = useSelector(
-    (state) => state.toolbar.isEndPointActive
+    (state) => state.toolbar.isEndPointActive,
   );
 
   function onMouseEnter() {
@@ -21,9 +21,12 @@ function Square(props) {
   }
 
   function onMouseLeave() {
-    setTimeout(() => {
-      setIsMouseover(false);
-    }, 250);
+    setTimeout(
+      () => {
+        setIsMouseover(false);
+      },
+      isEndPointActive || isStartPointActive ? 100 : 250,
+    );
   }
 
   function onMouseClick(event) {
@@ -31,22 +34,21 @@ function Square(props) {
 
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
-      let prevStartPoint = document.querySelector("[start]");
-      if (prevStartPoint) {
-        prevStartPoint.removeAttribute("start");
-      }
-      target.setAttribute("start", true);
-      //TODO: Add Start Point to State; Remove previous start points.
+      handleGoalLines("start", target);
     }
 
     if (isEndPointActive) {
       dispatch(toggleEndPointCTA());
-      let prevEndPoint = document.querySelector("[end]");
-      if (prevEndPoint) {
-        prevEndPoint.removeAttribute("end");
-      }
-      target.setAttribute("end", true);
+      handleGoalLines("end", target);
     }
+  }
+
+  function handleGoalLines(goal, target) {
+    let prevPoint = document.querySelector(`[${goal}]`);
+    if (prevPoint) {
+      prevPoint.removeAttribute(goal);
+    }
+    target.setAttribute(goal, true);
   }
 
   return (
@@ -55,7 +57,7 @@ function Square(props) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onMouseClick}
-      className={"square"}
+      className={`square`}
       key={`${props.row}, ${props.col}`}
       style={{
         borderWidth: "1px",
@@ -64,6 +66,13 @@ function Square(props) {
         height: "20px",
         borderStyle: "solid",
         transform: isMouseover ? "scale(1.22)" : "scale(1)",
+        backgroundColor: isMouseover
+          ? isStartPointActive
+            ? "#e100ff"
+            : isEndPointActive
+            ? "#1f4277"
+            : null
+          : null,
       }}
     />
   );
