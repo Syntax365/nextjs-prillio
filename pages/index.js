@@ -6,10 +6,11 @@ import Matrix from "../components/Matrix";
 import Toolbar from "../components/Toolbar";
 import Button from "../components/Button";
 
-import { clearGraph } from "../helpers/gridHelper";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleStartPointCTA, toggleEndPointCTA } from "../slices/toolbarSlice";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { clearGraph } from "../helpers/gridHelper";
+import { toggleStartPointCTA, toggleEndPointCTA } from "../slices/toolbarSlice";
+import { setGridSize } from "../slices/gridSlice";
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function Homepage() {
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body id="body" className={"justify-between items-center h-[88vh]"}>
+      <Body id="body" className={"justify-between items-center h-full"}>
         <Matrix className={"w-full h-full"} />
         <Toolbar
           id="toolbar"
