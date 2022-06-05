@@ -10,7 +10,11 @@ function Matrix({ className = "", ...moreProps }) {
 
   const handleVariables = () => {
     if (typeof window !== "undefined") {
-      let availableHeight = window.innerHeight - 120;
+      let toolbarHeight = 60;
+      let headerHeight = 60;
+      let marginY = 32;
+      let availableHeight =
+        window.innerHeight - toolbarHeight - headerHeight - marginY;
 
       document.getElementById("array-matrix").style.height =
         availableHeight + "px";
@@ -31,7 +35,7 @@ function Matrix({ className = "", ...moreProps }) {
   return (
     <div
       id={"array-matrix"}
-      className={`flex justify-center items-center ${className}`}
+      className={`flex justify-center items-center ${className} m-4`}
       {...moreProps}
     >
       <Grid rows={demensions.rows} columns={demensions.columns} />
