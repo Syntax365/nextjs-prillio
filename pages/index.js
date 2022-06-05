@@ -59,7 +59,7 @@ function Homepage() {
     <>
       <Head>
         <title>Prill.io</title>
-        <meta name="viewport" content="viewport-fit=cover" />
+        {/* <meta name="viewport" content="viewport-fit=cover" /> */}
       </Head>
       <Header id="header" />
       <Body
