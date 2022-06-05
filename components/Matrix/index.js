@@ -19,9 +19,6 @@ function Matrix({ className = "", ...moreProps }) {
         window.innerHeight - toolbarHeight - headerHeight - margin;
       const availableWidth = window.innerWidth - margin;
 
-      console.log(availableWidth);
-      console.log(SQUARE_SIZE);
-
       const totalSquareColumns = Math.floor(availableWidth / SQUARE_SIZE);
       const totalSquareRows = Math.floor(availableHeight / SQUARE_SIZE);
 

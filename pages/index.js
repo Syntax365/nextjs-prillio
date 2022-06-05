@@ -42,7 +42,7 @@ function Homepage() {
       </Head>
       <Header id="header" />
       <Content id="body" className={"w-full jusitfy-center"}>
-        <Matrix className={"h-full border"} />
+        <Matrix className={"h-full"} />
 
         <Toolbar id="toolbar" className={"h-[60px] flex justify-center"}>
           <Button
