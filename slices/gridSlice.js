@@ -3,15 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const gridSlice = createSlice({
   name: "grid",
   initialState: {
-    gridSize: [0, 0],
+    gridDemensions: { rows: 10, columns: 10 },
   },
   reducers: {
-    setGridSize: (state, action) => {
-      state.gridSize = action.payload;
+    setGridDemensions: (state, action) => {
+      state.gridDemensions = action.payload;
     },
   },
 });
 
-export const { setGridSize } = gridSlice.actions;
+export const { setGridDemensions } = gridSlice.actions;
 
 export default gridSlice;
