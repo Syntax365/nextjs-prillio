@@ -37,24 +37,22 @@ function Homepage() {
   };
 
   const handleResize = () => {
-    document
-      .getElementById("body")
-      .style.setProperty(
-        "height",
-        `calc(${
-          window.innerHeight - 120
-        }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`,
-      );
+    // document
+    //   .getElementById("body")
+    //   .style.setProperty(
+    //     "height",
+    //     `calc(${
+    //       window.innerHeight - 120
+    //     }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`,
+    //   );
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    if (window.onorientationchange) {
-      window.addEventListener("orientationchange", handleResize);
-    }
-
-    handleResize();
+    // window.addEventListener("resize", handleResize);
+    // if (window.onorientationchange) {
+    //   window.addEventListener("orientationchange", handleResize);
+    // }
+    // handleResize();
   }, []);
 
   return (
@@ -63,12 +61,13 @@ function Homepage() {
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body id="body" className={"justify-between h-[80vh]"}>
-        <Matrix className={"w-full h-full"} />
-        <Toolbar
-          id="toolbar"
-          className={"mt-1 mb-1 h-[60px] flex justify-center"}
-        >
+      <Body
+        id="body"
+        className={"w-full jusitfy-center"}
+        style={{ height: "calc(100vh - 120px)", maxHeight: "100%" }}
+      >
+        <Matrix className={"h-full border"} />
+        <Toolbar id="toolbar" className={"h-[60px] flex justify-center"}>
           <Button
             id="start-point-cta"
             onClick={onStartClick}

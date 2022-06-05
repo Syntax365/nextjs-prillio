@@ -4,7 +4,7 @@ import DropDown from "../DropDown";
 function Header({ ...moreProps }) {
   const runFunction = () => {
     if (typeof window != undefined) {
-      window.runSpiralMatrix();
+      console.log("running code");
     }
   };
 
