@@ -16,8 +16,17 @@ function Square(props) {
     (state) => state.toolbar.isEndPointActive,
   );
 
+  const touchsupport =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0;
+
   function onMouseEnter() {
     setIsMouseover(true);
+
+    if (touchsupport) {
+      onMouseLeave();
+    }
   }
 
   function onMouseLeave() {
@@ -31,7 +40,6 @@ function Square(props) {
 
   function onMouseClick(event) {
     let target = event.target;
-    target.blur();
 
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
@@ -58,10 +66,6 @@ function Square(props) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onMouseClick}
-      onTouchStart={onMouseClick}
-      onTouchEnd={(event) => {
-        event.target.blur();
-      }}
       className={`square`}
       key={`${props.row}, ${props.col}`}
       style={{
