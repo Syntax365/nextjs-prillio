@@ -36,10 +36,14 @@ function Homepage() {
     }
   };
 
-  useEffect(() => {
+  const handleResize = () => {
     document
       .getElementById("body")
       .style.setProperty("height", `${window.innerHeight - 120}px`);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -48,7 +52,7 @@ function Homepage() {
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body id="body" className={"justify-between items-center h-[88vh]"}>
+      <Body id="body" className={"justify-between  h-[85vh]"}>
         <Matrix className={"w-full h-full"} />
         <Toolbar
           id="toolbar"
