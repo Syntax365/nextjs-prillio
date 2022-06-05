@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 // import Footer from "../components/Footer";
 import Head from "../components/Head";
-import Body from "../components/Body";
+import Content from "../components/Content";
 import Matrix from "../components/Matrix";
 import Toolbar from "../components/Toolbar";
 import Button from "../components/Button";
@@ -36,25 +36,6 @@ function Homepage() {
     }
   };
 
-  const handleResize = () => {
-    // document
-    //   .getElementById("body")
-    //   .style.setProperty(
-    //     "height",
-    //     `calc(${
-    //       window.innerHeight - 120
-    //     }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`,
-    //   );
-  };
-
-  useEffect(() => {
-    // window.addEventListener("resize", handleResize);
-    // if (window.onorientationchange) {
-    //   window.addEventListener("orientationchange", handleResize);
-    // }
-    // handleResize();
-  }, []);
-
   return (
     <>
       <Head>
@@ -62,16 +43,9 @@ function Homepage() {
         {/* <meta name="viewport" content="viewport-fit=cover" /> */}
       </Head>
       <Header id="header" />
-      <Body
-        id="body"
-        className={"w-full jusitfy-center"}
-        style={{
-          height:
-            "calc(100vh - 120px - env(safe-area-inset-bottom) - env(safe-area-inset-top))",
-          maxHeight: "100%",
-        }}
-      >
+      <Content id="body" className={"w-full jusitfy-center"}>
         <Matrix className={"h-full border"} />
+
         <Toolbar id="toolbar" className={"h-[60px] flex justify-center"}>
           <Button
             id="start-point-cta"
@@ -98,7 +72,7 @@ function Homepage() {
             <span className={"hidden sm:inline-block"}>Pick&nbsp;</span> End
           </Button>
         </Toolbar>
-      </Body>
+      </Content>
       {/* <Footer /> */}
     </>
   );

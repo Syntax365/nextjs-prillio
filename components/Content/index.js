@@ -1,4 +1,4 @@
-function Body({ children = "", className = "", ...moreProps }) {
+function Content({ children = "", className = "", ...moreProps }) {
   return (
     <div className={`lg:mx-auto ${className || ""}`} {...moreProps}>
       {children}
@@ -6,4 +6,4 @@ function Body({ children = "", className = "", ...moreProps }) {
   );
 }
 
-export default Body;
+export default Content;

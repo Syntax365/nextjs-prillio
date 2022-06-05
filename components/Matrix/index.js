@@ -9,7 +9,14 @@ function Matrix({ className = "", ...moreProps }) {
   const [demensions, setDemensions] = useState({ rows: 0, columns: 0 });
 
   const handleVariables = () => {
-    console.log("resize in matrix");
+    if (typeof window !== "undefined") {
+      let availableHeight = window.innerHeight - 120;
+
+      document.getElementById("array-matrix").style.height =
+        availableHeight + "px";
+
+      console.log("resize in matrix", availableHeight);
+    }
   };
 
   const handleResize = debounce(() => {
