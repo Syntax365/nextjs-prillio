@@ -49,6 +49,7 @@ function Homepage() {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+    handleResize();
   }, []);
 
   return (
@@ -57,7 +58,7 @@ function Homepage() {
         <title>Prill.io</title>
       </Head>
       <Header id="header" />
-      <Body id="body" className={"justify-between h-[85vh]"}>
+      <Body id="body" className={"justify-between h-[80vh]"}>
         <Matrix className={"w-full h-full"} />
         <Toolbar
           id="toolbar"
