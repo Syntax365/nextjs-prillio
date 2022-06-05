@@ -152,7 +152,7 @@ function Matrix({ className = "", ...moreProps }) {
     <div
       {...moreProps}
       id={"array-matrix"}
-      className={`flex justify-center items-center overflow-hidden ${className}`}
+      className={`flex justify-center items-center ${className}`}
     >
       <Grid rows={demensions.rows} columns={demensions.columns} />
     </div>

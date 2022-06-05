@@ -49,6 +49,11 @@ function Homepage() {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+
+    if (window.onorientationchange) {
+      window.addEventListener("orientationchange", handleResize);
+    }
+
     handleResize();
   }, []);
 
