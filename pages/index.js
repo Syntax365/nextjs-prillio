@@ -39,7 +39,12 @@ function Homepage() {
   const handleResize = () => {
     document
       .getElementById("body")
-      .style.setProperty("height", `${window.innerHeight - 120}px`);
+      .style.setProperty(
+        "height",
+        `calc(${
+          window.innerHeight - 120
+        }px - env(safe-area-inset-top) - env(safe-area-inset-bottom))`,
+      );
   };
 
   useEffect(() => {
