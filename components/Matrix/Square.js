@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   toggleStartPointCTA,
   toggleEndPointCTA,
+  setStartPoint,
+  setEndPoint,
 } from "../../slices/toolbarSlice";
 
 function Square(props) {
@@ -10,10 +12,10 @@ function Square(props) {
 
   const [isMouseover, setIsMouseover] = useState(false);
   const isStartPointActive = useSelector(
-    (state) => state.toolbar.isStartPointActive,
+    (state) => state.toolbar.isStartPointActive
   );
   const isEndPointActive = useSelector(
-    (state) => state.toolbar.isEndPointActive,
+    (state) => state.toolbar.isEndPointActive
   );
 
   const isTouchDevice = () => {
@@ -33,7 +35,7 @@ function Square(props) {
       () => {
         setIsMouseover(false);
       },
-      isEndPointActive || isStartPointActive ? 100 : 250,
+      isEndPointActive || isStartPointActive ? 100 : 250
     );
   }
 
@@ -42,11 +44,13 @@ function Square(props) {
 
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
+      dispatch(setStartPoint(event.target.id));
       handleGoalLines("start", target);
     }
 
     if (isEndPointActive) {
       dispatch(toggleEndPointCTA());
+      dispatch(setEndPoint(event.target.id));
       handleGoalLines("end", target);
     }
   }
@@ -61,12 +65,13 @@ function Square(props) {
 
   return (
     <th
-      coordinates={[props.row, props.col]}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onMouseClick}
       className={`square`}
-      key={`${props.row}, ${props.col}`}
+      key={`${props.row},${props.col}`}
+      id={`${props.row},${props.col}`}
+      value={0}
       style={{
         borderWidth: "1px",
         borderColor: "#107896",

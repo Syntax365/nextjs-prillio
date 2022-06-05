@@ -26,7 +26,7 @@ function Matrix({ className = "", ...moreProps }) {
         setGridDemensions({
           rows: totalSquareRows,
           columns: totalSquareColumns,
-        }),
+        })
       );
     }
   };

@@ -1,10 +1,31 @@
 import Button from "../Button";
 import DropDown from "../DropDown";
 
+import { useSelector } from "react-redux";
+import { BFS } from "../../helpers/algorithms";
+
 function Header({ ...moreProps }) {
+  const startPoint = useSelector((state) => state.toolbar.startPoint);
+  const endPoint = useSelector((state) => state.toolbar.endPoint);
+  const gridDemensions = useSelector((state) => state.grid.gridDemensions);
+  const algorithmSelected = useSelector(
+    (state) => state.toolbar.selectedAlgorithm
+  );
+
   const runFunction = () => {
     if (typeof window != undefined) {
-      console.log("running code");
+      switch (algorithmSelected) {
+        case "BFS":
+          BFS(
+            gridDemensions.rows,
+            gridDemensions.columns,
+            startPoint,
+            endPoint
+          );
+          break;
+        default:
+          break;
+      }
     }
   };
 

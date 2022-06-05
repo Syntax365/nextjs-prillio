@@ -9,10 +9,10 @@ function DropDown({ className = "" }) {
 
   const dispatch = useDispatch();
   const selectedAlgorithm = useSelector(
-    (state) => state.toolbar.selectedAlgorithm,
+    (state) => state.toolbar.selectedAlgorithm
   );
 
-  const dropDownItems = ["Linear Search", "BFS (Broken)", "DFS (Broken)"];
+  const dropDownItems = ["BFS"];
 
   const onDropDownClick = () => {
     setIsDropDownActive(!isDropDownActive);
