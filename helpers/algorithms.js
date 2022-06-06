@@ -36,9 +36,6 @@ export function BFS(totalRows, totalCols, startPoint, endPoint) {
         `${neighborRow},${neighborCol}`
       );
 
-      if (neighborNode.getAttribute("value") === "0")
-        console.log("NeighborNode", neighborNode);
-
       if (isValidNode(neighborNode)) {
         if (!queue.includes(neighborNode)) {
           queue.push(neighborNode);

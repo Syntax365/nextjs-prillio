@@ -18,7 +18,6 @@ export function startPointClick(event) {
 
 export function clearGraph() {
   let clearArr = document.querySelectorAll("[value]");
-  console.log(clearArr);
   clearArr.forEach((node) => {
     node.classList.remove("color-purple");
     node.setAttribute("value", 0);
