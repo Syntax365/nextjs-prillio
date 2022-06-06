@@ -11,22 +11,35 @@ function Square(props) {
   const dispatch = useDispatch();
 
   const [isMouseover, setIsMouseover] = useState(false);
+
   const isStartPointActive = useSelector(
     (state) => state.toolbar.isStartPointActive
   );
   const isEndPointActive = useSelector(
     (state) => state.toolbar.isEndPointActive
   );
+  const isWallsActive = useSelector((state) => state.toolbar.isWallsActive);
 
   const isTouchDevice = () => {
     return window.matchMedia("(pointer: coarse)").matches;
   };
 
-  function onMouseEnter() {
+  function onMouseEnter(event) {
     setIsMouseover(true);
 
     if (isTouchDevice()) {
       onMouseLeave();
+    }
+
+    if (isWallsActive) {
+      const target = event.target;
+      if (target.classList.contains("wall")) {
+        target.classList.remove("wall");
+        target.setAttribute("value", "0");
+      } else {
+        target.classList.add("wall");
+        target.setAttribute("value", "-1");
+      }
     }
   }
 

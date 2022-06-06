@@ -8,22 +8,30 @@ import Button from "../components/Button";
 
 import { useSelector, useDispatch } from "react-redux";
 import { clearGraph } from "../helpers/gridHelper";
-import { toggleStartPointCTA, toggleEndPointCTA } from "../slices/toolbarSlice";
+import {
+  toggleStartPointCTA,
+  toggleEndPointCTA,
+  toggleAddWallsCTA,
+} from "../slices/toolbarSlice";
 
 function Homepage() {
   const dispatch = useDispatch();
 
   const isStartPointActive = useSelector(
-    (state) => state.toolbar.isStartPointActive,
+    (state) => state.toolbar.isStartPointActive
   );
   const isEndPointActive = useSelector(
-    (state) => state.toolbar.isEndPointActive,
+    (state) => state.toolbar.isEndPointActive
   );
+  const isWallsActive = useSelector((state) => state.toolbar.isWallsActive);
 
   const onStartClick = () => {
     dispatch(toggleStartPointCTA());
     if (isEndPointActive) {
       dispatch(toggleEndPointCTA());
+    }
+    if (isWallsActive) {
+      dispatch(toggleAddWallsCTA());
     }
   };
 
@@ -31,6 +39,19 @@ function Homepage() {
     dispatch(toggleEndPointCTA());
     if (isStartPointActive) {
       dispatch(toggleStartPointCTA());
+    }
+    if (isWallsActive) {
+      dispatch(toggleAddWallsCTA());
+    }
+  };
+
+  const onWallsClick = () => {
+    dispatch(toggleAddWallsCTA());
+    if (isStartPointActive) {
+      dispatch(toggleStartPointCTA());
+    }
+    if (isEndPointActive) {
+      dispatch(toggleEndPointCTA());
     }
   };
 
@@ -68,6 +89,15 @@ function Homepage() {
             }`}
           >
             <span className={"hidden sm:inline-block"}>Pick&nbsp;</span> End
+          </Button>
+          <Button
+            id="end-point-cta"
+            onClick={onWallsClick}
+            className={`border-gradiant secondary  mx-2 ${
+              isWallsActive ? "active-button" : ""
+            }`}
+          >
+            <span className={"hidden sm:inline-block"}>Add&nbsp;</span> Wall
           </Button>
         </Toolbar>
       </Content>

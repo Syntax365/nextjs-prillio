@@ -182,3 +182,7 @@ th[start] {
 #dropdown-container {
   transform-origin: top center;
 }
+
+.wall {
+  background-color: darkslategray;
+}

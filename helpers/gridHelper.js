@@ -20,6 +20,8 @@ export function clearGraph() {
   let clearArr = document.querySelectorAll("[value]");
   clearArr.forEach((node) => {
     node.classList.remove("color-purple");
+    node.classList.remove("color-pink");
+    node.classList.remove("wall");
     node.setAttribute("value", 0);
   });
 }

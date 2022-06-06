@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const toolbarSlice = createSlice({
   name: "toolbar",
   initialState: {
+    isWallsActive: false,
     isStartPointActive: false,
     isEndPointActive: false,
     selectedAlgorithm: "BFS",
@@ -10,6 +11,9 @@ const toolbarSlice = createSlice({
     endPoint: "0,1",
   },
   reducers: {
+    toggleAddWallsCTA: (state) => {
+      state.isWallsActive = !state.isWallsActive;
+    },
     toggleStartPointCTA: (state) => {
       state.isStartPointActive = !state.isStartPointActive;
     },
@@ -34,6 +38,7 @@ export const {
   selectAlgorithm,
   setStartPoint,
   setEndPoint,
+  toggleAddWallsCTA,
 } = toolbarSlice.actions;
 
 export default toolbarSlice;

@@ -7,7 +7,6 @@ export async function BFS(totalRows, totalCols, startPoint) {
 
   let count = 0;
   let currentNode = document.getElementById(`${row},${col}`);
-  let delayIncrement = 1;
 
   if (isValidNode(currentNode)) {
     queue.push(currentNode);
@@ -21,7 +20,7 @@ export async function BFS(totalRows, totalCols, startPoint) {
       console.log("Successfully found specified end point.", currentNode.id);
       return;
     }
-    await visitNode(currentNode, delayIncrement);
+    await visitNode(currentNode);
 
     const neighborsCoords = getNeighborNodes(currentNode, totalRows, totalCols);
 
@@ -72,17 +71,17 @@ function getNeighborNodes(node, totalRows, totalCols) {
   return neighborCoords;
 }
 
-async function visitNode(node, delayIncrement) {
+async function visitNode(node) {
   if (node) {
     node.setAttribute("value", 1);
     node.classList.remove("color-pink");
     node.classList.add("color-purple");
-    await sleep(delayIncrement);
+    await sleep();
   }
 }
 
-async function sleep(delayIncrement) {
-  return new Promise((resolve) => setTimeout(resolve, delayIncrement));
+async function sleep() {
+  return new Promise((resolve) => setTimeout(resolve, 0));
 }
 
 function isValidNode(node) {
