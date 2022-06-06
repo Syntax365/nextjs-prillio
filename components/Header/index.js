@@ -2,7 +2,7 @@ import Button from "../Button";
 import DropDown from "../DropDown";
 
 import { useSelector } from "react-redux";
-import { BFS } from "../../helpers/algorithms";
+import { BFS, getShortestPath } from "../../helpers/algorithms";
 
 function Header({ ...moreProps }) {
   const startPoint = useSelector((state) => state.toolbar.startPoint);
@@ -11,11 +11,19 @@ function Header({ ...moreProps }) {
     (state) => state.toolbar.selectedAlgorithm
   );
 
-  const runFunction = () => {
+  const runFunction = async () => {
     if (typeof window != undefined) {
       switch (algorithmSelected) {
         case "BFS":
-          BFS(gridDemensions.rows, gridDemensions.columns, startPoint);
+          await BFS(
+            gridDemensions.rows,
+            gridDemensions.columns,
+            startPoint
+          ).then((endNode) => {
+            if (endNode) {
+              getShortestPath(endNode);
+            }
+          });
           break;
         default:
           break;

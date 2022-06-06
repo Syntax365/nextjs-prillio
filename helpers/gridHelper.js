@@ -22,6 +22,7 @@ export function clearGraph() {
     node.classList.remove("color-purple");
     node.classList.remove("color-pink");
     node.classList.remove("wall");
+    node.classList.remove("success-yellow");
     node.setAttribute("value", 0);
   });
 }

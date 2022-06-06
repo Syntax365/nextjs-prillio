@@ -186,3 +186,7 @@ th[start] {
 .wall {
   background-color: darkslategray;
 }
+
+.success-yellow {
+  background-color: yellow !important;
+}
