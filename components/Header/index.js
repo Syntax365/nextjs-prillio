@@ -6,7 +6,6 @@ import { BFS } from "../../helpers/algorithms";
 
 function Header({ ...moreProps }) {
   const startPoint = useSelector((state) => state.toolbar.startPoint);
-  const endPoint = useSelector((state) => state.toolbar.endPoint);
   const gridDemensions = useSelector((state) => state.grid.gridDemensions);
   const algorithmSelected = useSelector(
     (state) => state.toolbar.selectedAlgorithm
@@ -16,12 +15,7 @@ function Header({ ...moreProps }) {
     if (typeof window != undefined) {
       switch (algorithmSelected) {
         case "BFS":
-          BFS(
-            gridDemensions.rows,
-            gridDemensions.columns,
-            startPoint,
-            endPoint
-          );
+          BFS(gridDemensions.rows, gridDemensions.columns, startPoint);
           break;
         default:
           break;

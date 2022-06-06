@@ -1,18 +1,13 @@
-export function BFS(totalRows, totalCols, startPoint, endPoint) {
-  console.log("Total Rows: ", totalRows);
-  console.log("Total Cols: ", totalCols);
-  console.log("Start Point: ", startPoint);
-  console.log("End Point: ", endPoint);
+export async function BFS(totalRows, totalCols, startPoint) {
+  const queue = [];
 
-  let start = startPoint.split(",");
-  console.log("Row: ", start[0]);
-  console.log("Col: ", start[1]);
+  const start = startPoint.split(",");
+  const row = start[0];
+  const col = start[1];
 
-  let queue = [];
   let count = 0;
-  let row = start[0];
-  let col = start[1];
   let currentNode = document.getElementById(`${row},${col}`);
+  let delayIncrement = 1;
 
   if (isValidNode(currentNode)) {
     queue.push(currentNode);
@@ -20,12 +15,13 @@ export function BFS(totalRows, totalCols, startPoint, endPoint) {
 
   while (queue.length && count < 5500) {
     currentNode = queue.shift();
+
     if (currentNode.getAttribute("end")) {
-      console.log("end!");
-      console.log(count);
+      console.log("Total Iterations : ", count);
+      console.log("Successfully found specified end point.", currentNode.id);
       return;
     }
-    visitNode(currentNode);
+    await visitNode(currentNode, delayIncrement);
 
     const neighborsCoords = getNeighborNodes(currentNode, totalRows, totalCols);
 
@@ -39,17 +35,21 @@ export function BFS(totalRows, totalCols, startPoint, endPoint) {
       if (isValidNode(neighborNode)) {
         if (!queue.includes(neighborNode)) {
           queue.push(neighborNode);
+          queueNode(neighborNode);
         }
       }
     });
 
     count++;
   }
-  console.log(count);
+  console.log("Total Iterations : ", count);
+  console.log("Failed to find (or indicate) specified end point.");
   return;
 }
 
-function queueNode(node) {}
+function queueNode(node) {
+  node.classList.add("color-pink");
+}
 
 function getNeighborNodes(node, totalRows, totalCols) {
   const coords = node.id.split(",");
@@ -72,11 +72,17 @@ function getNeighborNodes(node, totalRows, totalCols) {
   return neighborCoords;
 }
 
-function visitNode(node) {
+async function visitNode(node, delayIncrement) {
   if (node) {
     node.setAttribute("value", 1);
+    node.classList.remove("color-pink");
     node.classList.add("color-purple");
+    await sleep(delayIncrement);
   }
+}
+
+async function sleep(delayIncrement) {
+  return new Promise((resolve) => setTimeout(resolve, delayIncrement));
 }
 
 function isValidNode(node) {
