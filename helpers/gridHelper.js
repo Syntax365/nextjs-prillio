@@ -17,11 +17,12 @@ export function startPointClick(event) {
 }
 
 export function clearGraph() {
-  let clearArr = document.getElementsByClassName("color-purple");
-  for (let i = 0; i < clearArr.length; i++) {
-    clearArr[i].classList.remove("color-purple");
-    i--;
-  }
+  let clearArr = document.querySelectorAll("[value]");
+  console.log(clearArr);
+  clearArr.forEach((node) => {
+    node.classList.remove("color-purple");
+    node.setAttribute("value", 0);
+  });
 }
 
 export function debounce(func, wait, immediate) {
