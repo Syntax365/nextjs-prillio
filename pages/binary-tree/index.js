@@ -7,41 +7,65 @@ function Node(value) {
   this.right = null;
 
   this.leftSkew = 0;
-
-  this.getDegree = () => {
-    let degree = 0;
-    if (this.root === null) return degree;
-    let currentRoot = this.root;
-    degree++;
-    while (currentRoot) {
-      currentRoot = currentRoot.root;
-      degree++;
-    }
-    return degree;
-  };
+  this.degree = 0;
 
   this.printNode = () => {
-    let topPos = this.getDegree() * 50 || 50;
+    let selfX = this.leftSkew; //Self X
+    let selfY = this.degree * 60 || 0; //Self Y
+
+    let rootX = this.root?.leftSkew || 0; //Root X
+    let rootY = this.root?.degree * 60 || 0; //Root Y
+
+    // A^2 + B^2 = C^2
+    let xDistance = Math.pow(selfX - rootX, 2);
+    let yDistance = Math.pow(selfY - rootY, 2);
+
+    let totalDistance = Math.sqrt(xDistance + yDistance);
+    totalDistance = Math.floor(totalDistance);
+
+    // Get Degree to Root
+
+    //Height = 60; Hypot = totalDistance
+    let degree = Math.asin(60 / totalDistance);
 
     return (
-      <div
-        key={this.value}
-        style={{
-          top: `${topPos}px`,
-          right: `${this.leftSkew}px`,
-        }}
-        className={`absolute border w-[30px] h-[30px] text-center flex justify-center items-center`}
-      >
-        {this.value}
-      </div>
+      <>
+        <div
+          key={this.value}
+          style={{
+            top: `${selfY}px`,
+            right: `${this.leftSkew}px`,
+          }}
+          className={`absolute border w-[30px] h-[30px] text-center flex justify-center items-center bg-white`}
+        >
+          <div className="relative" style={{ zIndex: "-1" }}>
+            {this.root && (
+              <div
+                style={{
+                  width: `${totalDistance}px`,
+                  top: "-32px",
+                  right:
+                    this.root.left === this
+                      ? -totalDistance
+                      : `-${this.degree * 4}px`,
+                  transform: `rotate(${
+                    this.root.left === this ? -degree : degree
+                  }rad)`,
+                }}
+                className={`absolute h-[1px] border`}
+              />
+            )}
+          </div>
+          {this.value}
+        </div>
+      </>
     );
   };
 
   this.addNewValue = (value) => {
     let currentNode = this;
     let newNode = new Node(value);
-
-    let count = 0;
+    const startSkew = 256;
 
     while (newNode.root === null) {
       if (currentNode.value >= newNode.value) {
@@ -49,7 +73,8 @@ function Node(value) {
           //If left child is null
           currentNode.left = newNode;
           newNode.root = currentNode;
-          newNode.leftSkew = newNode.root.leftSkew + 70;
+          newNode.degree = newNode.root.degree + 1;
+          newNode.leftSkew = newNode.root.leftSkew + startSkew / newNode.degree;
         } else {
           //If there is a left child
           currentNode = currentNode.left;
@@ -59,14 +84,13 @@ function Node(value) {
           //If right child is null
           currentNode.right = newNode;
           newNode.root = currentNode;
-          newNode.leftSkew = newNode.root.leftSkew - 70;
+          newNode.degree = newNode.root.degree + 1;
+          newNode.leftSkew = newNode.root.leftSkew - startSkew / newNode.degree;
         } else {
           //If there is a right child
           currentNode = currentNode.right;
         }
       }
-
-      count++;
     }
   };
 
@@ -100,7 +124,7 @@ const buildTree = (root, totalNodes) => {
   return root;
 };
 
-function BinaryTree({ totalNodes = 10 }) {
+function BinaryTree({ totalNodes = 15 }) {
   const [root, setRoot] = useState();
 
   useEffect(() => {
@@ -123,12 +147,8 @@ function BinaryTree({ totalNodes = 10 }) {
       while (queue.length) {
         currentNode = queue.pop();
 
-        currentNode.left
-          ? queue.push(currentNode.left)
-          : console.log("Left Child Null");
-        currentNode.right
-          ? queue.push(currentNode.right)
-          : console.log("Right Child Null");
+        currentNode.left ? queue.push(currentNode.left) : "";
+        currentNode.right ? queue.push(currentNode.right) : "";
 
         nodeHTMLArray.push(currentNode.printNode());
         currentTop = currentTop - 50;
@@ -139,7 +159,7 @@ function BinaryTree({ totalNodes = 10 }) {
   };
 
   return (
-    <div className="w-full mx-auto h-[10vh] flex justify-center">
+    <div className="w-full mx-auto pt-12 flex justify-center">
       <div className="relative">{printTree(root)}</div>
     </div>
   );
